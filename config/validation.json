@@ -1,0 +1,94 @@
+{
+  "description": "Scope v6 (26 Apr 2026): email-driven dashboard using Aloha 'ALL METRICS' xlsx as the sole data source. 7 sites only. If any HARD rule fails, the agent must NOT overwrite data/latest.json \u2014 it must write data/_latest_rejected.json and send a notification. v6 makes the parser self-adapting: any new revenue-centre label is auto-classified into other_in_store_gbp / other_delivery_gbp and captured on the dashboard, with a soft warning so we know to add a dedicated mapping. The hard rule parser_rc_reconciles_to_xlsx_total still guarantees no revenue is dropped. Marketman is kept as a pending/hidden section until a scheduled email is set up.",
+  "hard_rules": [
+    {
+      "id": "aloha_store_count_exact",
+      "rule": "Parsed Aloha xlsx must contain all 7 configured sites (match on aloha_report_name). Any missing site is a hard reject.",
+      "on_fail": "reject"
+    },
+    {
+      "id": "aloha_group_total_reconciles",
+      "rule": "group_total.net_sales_gbp must equal sum of per-site net_sales_gbp within \u00b10.05 GBP (rounding tolerance).",
+      "on_fail": "reject"
+    },
+    {
+      "id": "aloha_group_checks_reconciles",
+      "rule": "group_total.checks must equal sum of per-site checks exactly.",
+      "on_fail": "reject"
+    },
+    {
+      "id": "aloha_group_guests_reconciles",
+      "rule": "group_total.guests must equal sum of per-site guests exactly.",
+      "on_fail": "reject"
+    },
+    {
+      "id": "aloha_group_delivery_reconciles",
+      "rule": "group_total.delivery_gbp must equal sum of per-site delivery_gbp within \u00b10.05 GBP.",
+      "on_fail": "reject"
+    },
+    {
+      "id": "revenue_centers_sum_to_net",
+      "rule": "For each site, sum(revenue_centers.*) must equal net_sales_gbp within \u00b10.05 GBP.",
+      "on_fail": "reject"
+    },
+    {
+      "id": "parser_rc_reconciles_to_xlsx_total",
+      "rule": "For each site, sum of recognised revenue centres must reconcile to the xlsx's own TOTAL: line on the 'Sales by Revenue Center' block within \u00b10.05 GBP. Catches the case where a revenue centre exists in the xlsx but the parser doesn't know about it (e.g. BAR at OPA Bath).",
+      "on_fail": "reject"
+    },
+
+    {
+      "id": "delivery_in_store_sum_to_net",
+      "rule": "For each site, delivery_gbp + in_store_gbp must equal net_sales_gbp within \u00b10.05 GBP.",
+      "on_fail": "reject"
+    },
+    {
+      "id": "date_matches_yesterday",
+      "rule": "trading_date must equal (today - 1 day, Europe/London). Bypass allowed only if BUILD_ALLOW_ANY_DATE env var is set (for replay/testing).",
+      "on_fail": "reject"
+    },
+    {
+      "id": "no_negative_numbers",
+      "rule": "All net_sales_gbp, checks, guests, avg_check_gbp, delivery_gbp must be >= 0. Individual revenue center values may be 0 but not negative.",
+      "on_fail": "reject"
+    }
+  ],
+  "soft_rules": [
+    {
+      "id": "site_revenue_sane",
+      "rule": "For any site expected to trade, net_sales_gbp > 0. Warn if 0.",
+      "on_fail": "warn"
+    },
+    {
+      "id": "avg_check_plausible",
+      "rule": "Per-site avg_check_gbp between 5.00 and 80.00 when checks > 0.",
+      "on_fail": "warn"
+    },
+    {
+      "id": "site_below_target",
+      "rule": "Per-site net_sales_gbp below targets.daily_revenue_per_site_gbp (\u00a31,800) is a soft warning \u2014 surfaced as a badge on the dashboard, not a reject.",
+      "on_fail": "warn"
+    },
+    {
+      "id": "delivery_share_plausible",
+      "rule": "Per-site delivery_gbp / net_sales_gbp between 0% and 85% (sites with no delivery legitimately sit at 0%). Above 85% is a warn.",
+      "on_fail": "warn"
+    },
+    {
+      "id": "group_day_swing",
+      "rule": "Group net sales vs same weekday 7 days ago should not differ by more than \u00b150%. If history file is missing or empty, skip.",
+      "on_fail": "warn"
+    }
+  ],
+  "section_status_rules": [
+    {
+      "id": "marketman_pending",
+      "rule": "Marketman section is shown on the dashboard as section_status='pending' with an explanatory note. It becomes 'active' only once a Marketman scheduled email report is set up and parsed. Do not overwrite marketman data once pending."
+    }
+  ],
+  "notify_on": {
+    "reject": "Send a notification titled 'Miaris dashboard NOT refreshed' with the failing rule ids.",
+    "warn": "Proceed. Include warnings in data/latest.json under validation.warnings so the dashboard can badge them.",
+    "sites_below_target": "Always surface in the notification body, but only when the validation itself passed."
+  }
+}

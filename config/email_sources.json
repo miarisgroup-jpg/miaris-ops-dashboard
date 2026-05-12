@@ -1,0 +1,57 @@
+{
+  "aloha_daily_sales": {
+    "sender": "donotreply@alohaenterprise.com",
+    "subject": "Scheduled report: ALL METRICS",
+    "attachment_filename_pattern": "ALL METRICS.xlsx",
+    "schedule_observed": "Fri 24 Apr 2026 at 08:59 UTC and 09:00 UTC (two duplicates)",
+    "report_for_date": "previous day",
+    "sites_present": [
+      "OPA Bath",
+      "Jars Meze",
+      "Taka Taka Bridewell",
+      "Taka Taka Magic Roll",
+      "Taka Taka Broadquay",
+      "Bournemouth",
+      "Bath James Street"
+    ],
+    "sites_missing": [
+      "Bath (TT-BATH)",
+      "Lower Bristol Road (TT-LOWER-BR)",
+      "La Perla (LA-PERLA — closed-expected)"
+    ],
+    "fields_available": [
+      "Payments (tender split: Cash / CARD / Uber / Deliveroo etc.)",
+      "Sales by Revenue Center (per-site delivery split: RESTAURANT / UBER EATS / DELIVEROO / JUST EAT / KIOSK / C&C)",
+      "Sales by Order Mode (SEND / etc. — includes Check Count and Guest Count)",
+      "Sales by Category (Food / Drink Alc / Drink Non-Alc / Sides)",
+      "Sales by Day Part by Category (Lunch / Dinner)",
+      "Comps (itemised)",
+      "Promos (itemised)",
+      "Tax by Tax ID (VAT 20%)"
+    ],
+    "fields_missing_vs_web_dashboard": [
+      "Labour % / Labour Hours / Labour Amount",
+      "Voids"
+    ],
+    "schema_notes": {
+      "report_title_row": "R1 col E = '    Aloha Daily Sales'",
+      "store_group_row": "R6 col A = 'Store Group: Miaris Group'",
+      "report_date_row": "R7 col A = 'Report Date: DD/MM/YYYY'",
+      "per_site_anchor": "First col-A cell containing a site name marks the start of a site block",
+      "net_sales_col": 5,
+      "check_count_col": 7,
+      "guest_count_col": 10,
+      "gross_sales_col": 19,
+      "comps_col": 7,
+      "promos_col": 10
+    }
+  },
+  "todo": {
+    "next_steps": [
+      "Expand Aloha scheduled report to include Bath and Lower Bristol Road (currently missing)",
+      "Add a second scheduled report for Labour (ALL METRICS currently has no labour)",
+      "Set up Marketman scheduled email report (Purchasing Per Branch + Purchase Summary)",
+      "Confirm Orderpro is no longer needed — Aloha revenue center split covers delivery breakdown"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Miaris Ops Dashboard",
+  "short_name": "Miaris Ops",
+  "description": "Daily validated KPI dashboard for Miaris Group — 10 sites across Aloha POS, Deliveroo, Uber Eats and Google Business.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f1e7",
+  "theme_color": "#b8232a",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

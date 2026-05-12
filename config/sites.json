@@ -1,0 +1,27 @@
+{
+  "note": "Authoritative Miaris Group site list — Scope v4 (24 April 2026). 7 active sites only. Bath (TT-BATH), Lower Bristol Road (TT-LOWER-BR), and La Perla (LA-PERLA) are OUT OF SCOPE — do not include in any dashboard, report, or validation. Data source is the Aloha 'ALL METRICS' daily email report (no Orderpro, no Marketman browser required yet).",
+  "sites": [
+    { "code": "TT-BRIDEWELL",   "aloha_id": "101", "aloha_report_name": "Taka Taka Bridewell",      "name": "Taka Taka Bridewell",        "brand": "Taka Taka", "marketman_buyer": "MNS BRISTOL LTD T/A TAKA BRIDEWELL" },
+    { "code": "TT-BROADQUAY",   "aloha_id": "103", "aloha_report_name": "Taka Taka Broadquay",     "name": "Taka Taka Broad Quay",       "brand": "Taka Taka", "marketman_buyer": "FEAKES SW LTD T/A TAKA BROAD QUAY" },
+    { "code": "TT-MAGIC-ROLL",  "aloha_id": "102", "aloha_report_name": "Taka Taka Magic Roll",    "name": "Taka Taka Magic Roll",       "brand": "Taka Taka", "marketman_buyer": "TAKA TAKA LTD T/A TAKA MAGIC ROLL" },
+    { "code": "TT-JAMES-ST",    "aloha_id": "107", "aloha_report_name": "Bath James Street",       "name": "Taka Taka Bath James Street","brand": "Taka Taka", "marketman_buyer": "TAKA TAKA JAMES STREET" },
+    { "code": "JARS-MEZE",      "aloha_id": "3",   "aloha_report_name": "Jars Meze",               "name": "Jars Meze",                  "brand": "Jars Meze", "marketman_buyer": "ELA BATH LTD T/A JARS MEZE" },
+    { "code": "TT-BOURNEMOUTH", "aloha_id": "104", "aloha_report_name": "Bournemouth",             "name": "Taka Taka Bournemouth",      "brand": "Taka Taka", "marketman_buyer": "TAKA TAKA BOURNEMOUTH" },
+    { "code": "OPA-BATH",       "aloha_id": "2",   "aloha_report_name": "OPA Bath",                "name": "OPA Bath",                   "brand": "OPA",       "marketman_buyer": "OPA BATH LTD T/A OPA MEZE" }
+  ],
+  "scope_v4_captured_on": "2026-04-24",
+  "scope_v4_change_note": "User narrowed scope to 7 sites. Dropped Bath (TT-BATH), Lower Bristol Road (TT-LOWER-BR), La Perla (LA-PERLA) entirely. Dropped Orderpro (delivery channel split now comes from Aloha 'Sales by Revenue Center' in the daily email report). Marketman procurement still in scope as a browser pull until a scheduled email is set up.",
+  "aloha_email_source": {
+    "sender": "donotreply@alohaenterprise.com",
+    "subject": "Scheduled report: ALL METRICS",
+    "attachment": "ALL METRICS.xlsx"
+  },
+  "marketman": {
+    "url": "https://buyer.marketman.com/v2/dashboard",
+    "active_sites_on_platform": ["TT-BRIDEWELL", "TT-BROADQUAY", "TT-MAGIC-ROLL", "TT-JAMES-ST", "JARS-MEZE", "TT-BOURNEMOUTH", "OPA-BATH"],
+    "note": "All 7 active sites have Marketman buyer entities."
+  },
+  "targets": {
+    "daily_revenue_per_site_gbp": 1800
+  }
+}
