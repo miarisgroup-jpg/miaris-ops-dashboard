@@ -75,6 +75,15 @@
   .stale-banner { background: #faeed1; border: 1px solid #e0c98a; border-left: 4px solid var(--warn); border-radius: 12px; padding: 14px 18px; margin: 0 0 18px; color: #5b4400; font-size: 14px; line-height: 1.5; }
   .stale-banner b { color: #3a2c00; }
   .stale-banner .title { font-family: "Fraunces", serif; font-weight: 600; font-size: 17px; color: #3a2c00; margin-bottom: 4px; }
+  /* AvT section */
+  .avt-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 8px 0 18px; }
+  @media (max-width: 900px) { .avt-kpis { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+  tr.flagged td { background: #f3eee4; color: #6b655c; }
+  tr.flagged td:first-child { color: var(--ink); }
+  .flag-badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #faeed1; color: var(--warn); margin-top: 4px; }
+  .var-good { color: var(--good); font-weight: 600; }
+  .var-warn { color: var(--warn); font-weight: 600; }
+  .var-bad  { color: var(--bad);  font-weight: 600; }
 </style>
 </head>
 <body>
@@ -284,7 +293,7 @@ async function load() {
   document.getElementById("sites-body").innerHTML = siteRows + siteTotals;
 
   renderLabour(data);
-  renderMarketman(data);
+  renderAvT(cfg);
 }
 
 function renderLabour(data) {
@@ -297,25 +306,124 @@ function renderLabour(data) {
   }
 }
 
-function renderMarketman(data) {
+// MarketMan AvT — weekly food cost section. Fetches data/avt_latest.json independently;
+// failure to load never blocks the rest of the dashboard.
+async function renderAvT(cfg) {
   const wrap = document.getElementById("marketman-wrap");
-  const mm = data.marketman || { section_status: "pending" };
-  const title = `<h2>Marketman — procurement spend per branch <span class="sub" style="font-family:Inter,sans-serif;font-size:13px;font-weight:400">Today · Week · Month</span></h2>`;
-  if (mm.section_status !== "active") {
-    wrap.innerHTML = title + `<div class="pending-card"><b>Pending — needs a scheduled Marketman email.</b> ${mm.note || "Set up a scheduled Marketman 'Purchasing Per Branch' email to s.barbidis@miaris-group.com and this card will activate automatically."}</div>`;
+  const title = `<h2>Food cost — week ending <span id="avt-week-label" class="sub" style="font-family:Inter,sans-serif;font-size:13px;font-weight:400">loading…</span></h2>`;
+  let avt;
+  try {
+    avt = await fetch("data/avt_latest.json?ts=" + Date.now()).then(r => {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    });
+  } catch (e) {
+    wrap.innerHTML = title + `<div class="pending-card"><b>Pending — waiting for the first MarketMan AvT email.</b> MarketMan now sends the Weekly AvT Report every Monday after 10:00 BST. The next refresh will activate this section.</div>`;
+    document.getElementById("avt-week-label").textContent = "";
     return;
   }
-  const branches = mm.branches || [];
-  const rows = [...branches].sort((a,b)=>(b.month_gbp||0)-(a.month_gbp||0)).map(b => `
-    <tr>
-      <td>${b.name}</td>
-      <td class="num">${b.today_gbp != null ? fmtGBP(b.today_gbp) : dash(null)}</td>
-      <td class="num">${b.week_gbp  != null ? fmtGBP(b.week_gbp)  : dash(null)}</td>
-      <td class="num">${b.month_gbp != null ? fmtGBP(b.month_gbp) : dash(null)}</td>
-    </tr>`).join("");
-  const t = mm.totals || {};
-  const totalRow = `<tr class="totals"><td>Total (${branches.length} sites)</td><td class="num">${fmtGBP(t.today_gbp)}</td><td class="num">${fmtGBP(t.week_gbp)}</td><td class="num">${fmtGBP(t.month_gbp)}</td></tr>`;
-  wrap.innerHTML = title + `<div class="scroll-x"><table><thead><tr><th>Branch</th><th class="num">Today</th><th class="num">This week</th><th class="num">This month</th></tr></thead><tbody>${rows}${totalRow}</tbody></table></div>`;
+
+  // Site lookup from sites config (for display name + brand chip)
+  const siteCfg = {};
+  (cfg.sites || []).forEach(s => { siteCfg[s.code] = s; });
+
+  const weekLabel = (() => {
+    try {
+      const end = new Date(avt.week_end + "T00:00:00Z");
+      const opt = { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" };
+      const start = new Date(avt.week_start + "T00:00:00Z");
+      return start.toLocaleDateString("en-GB", opt) + " → " + end.toLocaleDateString("en-GB", opt);
+    } catch (e) { return `${avt.week_start} → ${avt.week_end}`; }
+  })();
+
+  const gc = avt.group_clean || {};
+  const cleanCount = (gc.sites_in_calc || []).length;
+  const excludedCount = (gc.sites_excluded || []).length;
+
+  const pct = v => (v == null ? "—" : (v*100).toFixed(1) + "%");
+  const signPct = v => {
+    if (v == null) return "—";
+    const n = v*100;
+    return (n >= 0 ? "+" : "") + n.toFixed(1) + "%";
+  };
+  const varClass = v => {
+    if (v == null) return "";
+    const a = Math.abs(v);
+    if (a <= 0.05) return "var-good";
+    if (a <= 0.10) return "var-warn";
+    return "var-bad";
+  };
+  const flagLabel = code => ({
+    "recipe_mapping_issue": "Recipe mapping issue",
+    "no_stock_count": "No stock count"
+  })[code] || (code || "Flagged");
+
+  const kpis = `
+    <section class="avt-kpis">
+      <div class="kpi"><div class="label">Sales (clean sites)</div><div class="value">${fmtGBP(gc.total_sales_gbp)}</div><div class="delta">${cleanCount} of 7 sites in headline KPI</div></div>
+      <div class="kpi"><div class="label">Actual food cost %</div><div class="value">${pct(gc.actual_pct)}</div><div class="delta">${fmtGBP(gc.actual_usage_gbp)} used</div></div>
+      <div class="kpi"><div class="label">Theoretical food cost %</div><div class="value">${pct(gc.theoretical_pct)}</div><div class="delta">${fmtGBP(gc.theoretical_usage_gbp)} expected</div></div>
+      <div class="kpi"><div class="label">Variance</div><div class="value ${varClass(gc.variance_pct)}">${signPct(gc.variance_pct)}</div><div class="delta">${fmtGBP(gc.variance_gbp)} · ${gc.variance_pct >= 0 ? "under-used" : "over-used"} vs recipes</div></div>
+    </section>`;
+
+  const sites = [...(avt.sites || [])].sort((a,b) => (b.total_sales_gbp||0) - (a.total_sales_gbp||0));
+  const rows = sites.map(s => {
+    const cfgS = siteCfg[s.code] || { name: s.code, brand: "" };
+    const flagged = s.is_flagged;
+    const tr = flagged ? `<tr class="flagged">` : `<tr>`;
+    const siteCell = `<td>${cfgS.name}<br><span class="brand-chip">${cfgS.brand}</span>${flagged ? `<div><span class="flag-badge">⚠ ${flagLabel(s.flag_reason)}</span></div>` : ""}</td>`;
+    return `${tr}
+      ${siteCell}
+      <td class="num">${fmtGBP(s.total_sales_gbp)}</td>
+      <td class="num">${pct(s.actual_pct)}</td>
+      <td class="num">${pct(s.theoretical_pct)}</td>
+      <td class="num ${varClass(s.variance_pct)}">${signPct(s.variance_pct)}<div style="font-size:11px;color:var(--muted);font-weight:400">${fmtGBP(s.variance_gbp)}</div></td>
+      <td class="num">${fmtGBP2(s.waste_gbp || 0)}</td>
+    </tr>`;
+  }).join("");
+
+  const ga = avt.group_all || {};
+  const allActualPct = ga.total_sales_gbp ? ga.actual_usage_gbp / ga.total_sales_gbp : null;
+  const allTheoPct   = ga.total_sales_gbp ? ga.theoretical_usage_gbp / ga.total_sales_gbp : null;
+  const allVarPct    = ga.total_sales_gbp ? ga.variance_gbp / ga.total_sales_gbp : null;
+  const totalsRow = `<tr class="totals">
+      <td>Group (all 7 sites, incl. flagged)</td>
+      <td class="num">${fmtGBP(ga.total_sales_gbp)}</td>
+      <td class="num">${pct(allActualPct)}</td>
+      <td class="num">${pct(allTheoPct)}</td>
+      <td class="num ${varClass(allVarPct)}">${signPct(allVarPct)}<div style="font-size:11px;color:var(--muted);font-weight:400">${fmtGBP(ga.variance_gbp)}</div></td>
+      <td class="num">${fmtGBP2(ga.waste_gbp || 0)}</td>
+    </tr>`;
+
+  const excluded = (gc.sites_excluded || []).map(x => {
+    const n = (siteCfg[x.code] || {}).name || x.code;
+    return `<b>${n}</b> (${flagLabel(x.reason)})`;
+  });
+
+  let footnote = `<div class="validation-note" style="margin-top:10px">
+    <b>Headline KPI</b> uses <b>${cleanCount} clean site${cleanCount===1?"":"s"}</b>; ${excludedCount} excluded${excluded.length ? ": " + excluded.join(", ") : ""}. 
+    Variance colouring: <span class="var-good">green ≤±5%</span> · <span class="var-warn">amber ±5–10%</span> · <span class="var-bad">red &gt;±10%</span>. 
+    Source: MarketMan Weekly AvT Report (Mon–Sun), validated.
+  </div>`;
+
+  const genDate = new Date(avt.generated_at_utc || Date.now());
+  const refreshed = `<div class="sub" style="margin-top:6px;font-size:12px">Refreshed ${genDate.toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })}</div>`;
+
+  wrap.innerHTML = `<h2>Food cost — week ending <span class="sub" style="font-family:Inter,sans-serif;font-size:13px;font-weight:400">${weekLabel}</span></h2>
+    ${kpis}
+    <div class="scroll-x"><table>
+      <thead><tr>
+        <th>Site</th>
+        <th class="num">Sales</th>
+        <th class="num">Actual %</th>
+        <th class="num">Theoretical %</th>
+        <th class="num">Variance</th>
+        <th class="num">Waste</th>
+      </tr></thead>
+      <tbody>${rows}${totalsRow}</tbody>
+    </table></div>
+    ${footnote}
+    ${refreshed}`;
 }
 
 load().catch(e => {
