@@ -403,7 +403,7 @@ async function renderAvT(cfg) {
   let footnote = `<div class="validation-note" style="margin-top:10px">
     <b>Headline KPI</b> uses <b>${cleanCount} clean site${cleanCount===1?"":"s"}</b>; ${excludedCount} excluded${excluded.length ? ": " + excluded.join(", ") : ""}. 
     Variance colouring: <span class="var-good">green ≤±5%</span> · <span class="var-warn">amber ±5–10%</span> · <span class="var-bad">red &gt;±10%</span>. 
-    Source: MarketMan Weekly AvT Report (Mon–Sun), validated.
+    Source: MarketMan Weekly AvT Report, validated.
   </div>`;
 
   const genDate = new Date(avt.generated_at_utc || Date.now());
