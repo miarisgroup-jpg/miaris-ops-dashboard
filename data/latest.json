@@ -1,6 +1,6 @@
 {
   "trading_date": "2026-07-07",
-  "generated_at_utc": "2026-07-08T07:03:02.993104Z",
+  "generated_at_utc": "2026-07-09T07:04:26.902373+00:00",
   "scope": "v4-email-driven-7sites",
   "group_total": {
     "net_sales_gbp": 13377.65,
@@ -254,16 +254,18 @@
   ],
   "marketman": {
     "section_status": "pending",
-    "note": "Marketman procurement data pending \u2014 a scheduled email report needs to be set up in Marketman."
+    "note": "Marketman procurement data pending — a scheduled email report needs to be set up in Marketman."
   },
   "labour": {
     "section_status": "pending",
     "note": "Labour cost % not included in the 'ALL METRICS' scheduled report. A second Labour-specific Aloha scheduled report is needed to surface labour on this dashboard."
   },
   "validation": {
-    "status": "passed",
+    "status": "stale",
     "hard_failures": [],
-    "warnings": [],
+    "warnings": [
+      "Stale — showing last validated trading date 2026-07-07. No 'ALL METRICS' email from Aloha received yet today (expected ~07:00 UTC / 08:00 BST)."
+    ],
     "sites_below_target": [
       "TT-MAGIC-ROLL",
       "TT-JAMES-ST",
@@ -289,5 +291,12 @@
       "delivery_share_plausible",
       "group_day_swing"
     ]
+  },
+  "stale": {
+    "is_stale": true,
+    "reason": "No 'ALL METRICS' email from Aloha received yet today (expected ~07:00 UTC / 08:00 BST).",
+    "attempted_for_trading_date": "2026-07-08",
+    "last_good_trading_date": "2026-07-07",
+    "cron_run_at_utc": "2026-07-09T07:04:26.902373+00:00"
   }
 }
