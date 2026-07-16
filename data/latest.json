@@ -1,6 +1,6 @@
 {
   "trading_date": "2026-07-14",
-  "generated_at_utc": "2026-07-15T07:01:25.085154Z",
+  "generated_at_utc": "2026-07-16T07:03:27.118586+00:00",
   "scope": "v4-email-driven-7sites",
   "group_total": {
     "net_sales_gbp": 15765.09,
@@ -254,17 +254,18 @@
   ],
   "marketman": {
     "section_status": "pending",
-    "note": "Marketman procurement data pending \u2014 a scheduled email report needs to be set up in Marketman."
+    "note": "Marketman procurement data pending — a scheduled email report needs to be set up in Marketman."
   },
   "labour": {
     "section_status": "pending",
     "note": "Labour cost % not included in the 'ALL METRICS' scheduled report. A second Labour-specific Aloha scheduled report is needed to surface labour on this dashboard."
   },
   "validation": {
-    "status": "passed",
+    "status": "stale",
     "hard_failures": [],
     "warnings": [
-      "avg_check_plausible: OPA-BATH avg_check \u00a399.4 outside 5\u201380"
+      "Stale — showing last validated trading date 2026-07-14. Aloha attachment download failed: ERROR: HTTP 400 from S3.",
+      "avg_check_plausible: OPA-BATH avg_check £99.4 outside 5–80"
     ],
     "sites_below_target": [
       "TT-BOURNEMOUTH"
@@ -288,5 +289,12 @@
       "delivery_share_plausible",
       "group_day_swing"
     ]
+  },
+  "stale": {
+    "is_stale": true,
+    "reason": "Aloha attachment download failed: ERROR: HTTP 400 from S3.",
+    "attempted_for_trading_date": "2026-07-15",
+    "last_good_trading_date": "2026-07-14",
+    "cron_run_at_utc": "2026-07-16T07:03:27.118586+00:00"
   }
 }
