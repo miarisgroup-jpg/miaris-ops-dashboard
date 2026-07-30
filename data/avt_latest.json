@@ -1,35 +1,35 @@
 {
   "report_type": "marketman_avt_weekly",
-  "week_start": "2026-07-13",
-  "week_end": "2026-07-19",
-  "downloaded_at": "23/07/2026 09:52:51",
-  "generated_at_utc": "2026-07-23T10:30:59.953695+00:00",
+  "week_start": "2026-07-20",
+  "week_end": "2026-07-26",
+  "downloaded_at": "30/07/2026 10:18:35",
+  "generated_at_utc": "2026-07-30T10:01:43.346647+00:00",
   "sites": [
     {
       "code": "OPA-BATH",
       "buyer_name": "OPA BATH LTD T/A OPA MEZE",
-      "total_sales_gbp": 33644.24,
-      "actual_usage_gbp": 7014.61,
-      "actual_pct": 0.2085,
-      "theoretical_usage_gbp": 4098.36,
-      "theoretical_pct": 0.1218,
-      "variance_gbp": -2916.25,
-      "variance_pct": -0.0867,
+      "total_sales_gbp": 29274.5,
+      "actual_usage_gbp": 7838.91,
+      "actual_pct": 0.2678,
+      "theoretical_usage_gbp": 3404.74,
+      "theoretical_pct": 0.1163,
+      "variance_gbp": -4434.17,
+      "variance_pct": -0.1515,
       "waste_gbp": 0.0,
       "is_flagged": false,
       "flag_reason": null,
       "categories": {
         "food": {
-          "category_sale_gbp": 14325.4,
-          "actual_pct": 0.3714,
-          "theoretical_pct": 0.2032,
-          "variance_pct": -0.1682
+          "category_sale_gbp": 13072.84,
+          "actual_pct": 0.3678,
+          "theoretical_pct": 0.1802,
+          "variance_pct": -0.1876
         },
         "bev": {
-          "category_sale_gbp": 19318.84,
-          "actual_pct": 0.0859,
-          "theoretical_pct": 0.0615,
-          "variance_pct": -0.0244
+          "category_sale_gbp": 16201.66,
+          "actual_pct": 0.1817,
+          "theoretical_pct": 0.0647,
+          "variance_pct": -0.1169
         },
         "unallocated": {
           "category_sale_gbp": 0.0,
@@ -48,28 +48,28 @@
     {
       "code": "TT-BROADQUAY",
       "buyer_name": "FEAKES SW LTD T/A TAKA BROAD QUAY",
-      "total_sales_gbp": 26151.48,
-      "actual_usage_gbp": 7428.16,
-      "actual_pct": 0.284,
-      "theoretical_usage_gbp": 8494.06,
-      "theoretical_pct": 0.3248,
-      "variance_gbp": 1065.91,
-      "variance_pct": 0.0408,
+      "total_sales_gbp": 22670.17,
+      "actual_usage_gbp": 7480.63,
+      "actual_pct": 0.33,
+      "theoretical_usage_gbp": 7560.18,
+      "theoretical_pct": 0.3335,
+      "variance_gbp": 79.55,
+      "variance_pct": 0.0035,
       "waste_gbp": 0.0,
       "is_flagged": false,
       "flag_reason": null,
       "categories": {
         "food": {
-          "category_sale_gbp": 21438.23,
-          "actual_pct": 0.3289,
-          "theoretical_pct": 0.3762,
-          "variance_pct": 0.0474
+          "category_sale_gbp": 18571.38,
+          "actual_pct": 0.3823,
+          "theoretical_pct": 0.3839,
+          "variance_pct": 0.0017
         },
         "bev": {
-          "category_sale_gbp": 4713.25,
-          "actual_pct": 0.0802,
-          "theoretical_pct": 0.091,
-          "variance_pct": 0.0108
+          "category_sale_gbp": 4098.79,
+          "actual_pct": 0.0929,
+          "theoretical_pct": 0.1048,
+          "variance_pct": 0.0119
         },
         "unallocated": {
           "category_sale_gbp": 0.0,
@@ -88,28 +88,28 @@
     {
       "code": "TT-BRIDEWELL",
       "buyer_name": "MNS BRISTOL LTD T/A TAKA BRIDEWELL",
-      "total_sales_gbp": 20283.27,
-      "actual_usage_gbp": 5890.18,
-      "actual_pct": 0.2904,
-      "theoretical_usage_gbp": 6742.01,
-      "theoretical_pct": 0.3324,
-      "variance_gbp": 851.83,
-      "variance_pct": 0.042,
-      "waste_gbp": 3.83,
+      "total_sales_gbp": 18034.75,
+      "actual_usage_gbp": 4142.48,
+      "actual_pct": 0.2297,
+      "theoretical_usage_gbp": 5998.52,
+      "theoretical_pct": 0.3326,
+      "variance_gbp": 1856.04,
+      "variance_pct": 0.1029,
+      "waste_gbp": 5.63,
       "is_flagged": false,
       "flag_reason": null,
       "categories": {
         "food": {
-          "category_sale_gbp": 14511.47,
-          "actual_pct": 0.3807,
-          "theoretical_pct": 0.4374,
-          "variance_pct": 0.0567
+          "category_sale_gbp": 12947.54,
+          "actual_pct": 0.2906,
+          "theoretical_pct": 0.4251,
+          "variance_pct": 0.1345
         },
         "bev": {
-          "category_sale_gbp": 5771.8,
-          "actual_pct": 0.0635,
-          "theoretical_pct": 0.0684,
-          "variance_pct": 0.005
+          "category_sale_gbp": 5087.21,
+          "actual_pct": 0.0746,
+          "theoretical_pct": 0.0972,
+          "variance_pct": 0.0226
         },
         "unallocated": {
           "category_sale_gbp": 0.0,
@@ -128,28 +128,68 @@
     {
       "code": "JARS-MEZE",
       "buyer_name": "ELA BATH LTD T/A JARS MEZE",
-      "total_sales_gbp": 17997.46,
+      "total_sales_gbp": 17814.1,
       "actual_usage_gbp": 0.0,
       "actual_pct": 0.0,
-      "theoretical_usage_gbp": 3319.81,
-      "theoretical_pct": 0.1845,
-      "variance_gbp": 3319.81,
-      "variance_pct": 0.1845,
+      "theoretical_usage_gbp": 3262.33,
+      "theoretical_pct": 0.1831,
+      "variance_gbp": 3262.33,
+      "variance_pct": 0.1831,
       "waste_gbp": 0.0,
       "is_flagged": true,
       "flag_reason": "no_stock_count",
       "categories": {
         "food": {
-          "category_sale_gbp": 12282.78,
+          "category_sale_gbp": 11945.55,
           "actual_pct": 0.0,
-          "theoretical_pct": 0.2409,
-          "variance_pct": 0.2409
+          "theoretical_pct": 0.2435,
+          "variance_pct": 0.2435
         },
         "bev": {
-          "category_sale_gbp": 5714.68,
+          "category_sale_gbp": 5868.55,
           "actual_pct": 0.0,
-          "theoretical_pct": 0.0632,
-          "variance_pct": 0.0632
+          "theoretical_pct": 0.0602,
+          "variance_pct": 0.0602
+        },
+        "unallocated": {
+          "category_sale_gbp": 0.0,
+          "actual_pct": 0.0,
+          "theoretical_pct": 0.0,
+          "variance_pct": 0.0
+        },
+        "deli": {
+          "category_sale_gbp": 0.0,
+          "actual_pct": 0.0,
+          "theoretical_pct": 0.0,
+          "variance_pct": 0.0
+        }
+      }
+    },
+    {
+      "code": "TT-BOURNEMOUTH",
+      "buyer_name": "TAKA TAKA BOURNEMOUTH",
+      "total_sales_gbp": 14239.63,
+      "actual_usage_gbp": 4561.4,
+      "actual_pct": 0.3203,
+      "theoretical_usage_gbp": 4713.8,
+      "theoretical_pct": 0.331,
+      "variance_gbp": 152.4,
+      "variance_pct": 0.0107,
+      "waste_gbp": 0.0,
+      "is_flagged": false,
+      "flag_reason": null,
+      "categories": {
+        "food": {
+          "category_sale_gbp": 10257.22,
+          "actual_pct": 0.4328,
+          "theoretical_pct": 0.4349,
+          "variance_pct": 0.0021
+        },
+        "bev": {
+          "category_sale_gbp": 3982.41,
+          "actual_pct": 0.0306,
+          "theoretical_pct": 0.0635,
+          "variance_pct": 0.0328
         },
         "unallocated": {
           "category_sale_gbp": 0.0,
@@ -168,68 +208,28 @@
     {
       "code": "TT-MAGIC-ROLL",
       "buyer_name": "TAKA TAKA LTD T/A TAKA MAGIC ROLL",
-      "total_sales_gbp": 17103.73,
-      "actual_usage_gbp": 4762.31,
-      "actual_pct": 0.2784,
-      "theoretical_usage_gbp": 5812.66,
-      "theoretical_pct": 0.3398,
-      "variance_gbp": 1050.35,
-      "variance_pct": 0.0614,
-      "waste_gbp": 0.46,
-      "is_flagged": false,
-      "flag_reason": null,
-      "categories": {
-        "food": {
-          "category_sale_gbp": 12950.41,
-          "actual_pct": 0.3525,
-          "theoretical_pct": 0.4255,
-          "variance_pct": 0.0729
-        },
-        "bev": {
-          "category_sale_gbp": 4149.32,
-          "actual_pct": 0.0475,
-          "theoretical_pct": 0.0729,
-          "variance_pct": 0.0255
-        },
-        "unallocated": {
-          "category_sale_gbp": 4.0,
-          "actual_pct": 0.0,
-          "theoretical_pct": 0.0,
-          "variance_pct": 0.0
-        },
-        "deli": {
-          "category_sale_gbp": 0.0,
-          "actual_pct": 0.0,
-          "theoretical_pct": 0.0,
-          "variance_pct": 0.0
-        }
-      }
-    },
-    {
-      "code": "TT-BOURNEMOUTH",
-      "buyer_name": "TAKA TAKA BOURNEMOUTH",
-      "total_sales_gbp": 14271.36,
-      "actual_usage_gbp": 6256.27,
-      "actual_pct": 0.4384,
-      "theoretical_usage_gbp": 4991.09,
-      "theoretical_pct": 0.3497,
-      "variance_gbp": -1265.18,
-      "variance_pct": -0.0887,
+      "total_sales_gbp": 13976.09,
+      "actual_usage_gbp": 5055.74,
+      "actual_pct": 0.3617,
+      "theoretical_usage_gbp": 4549.01,
+      "theoretical_pct": 0.3255,
+      "variance_gbp": -506.73,
+      "variance_pct": -0.0363,
       "waste_gbp": 0.0,
       "is_flagged": false,
       "flag_reason": null,
       "categories": {
         "food": {
-          "category_sale_gbp": 10426.91,
-          "actual_pct": 0.5482,
-          "theoretical_pct": 0.4558,
-          "variance_pct": -0.0924
+          "category_sale_gbp": 10396.28,
+          "actual_pct": 0.4575,
+          "theoretical_pct": 0.4115,
+          "variance_pct": -0.046
         },
         "bev": {
-          "category_sale_gbp": 3844.45,
-          "actual_pct": 0.1,
-          "theoretical_pct": 0.062,
-          "variance_pct": -0.038
+          "category_sale_gbp": 3579.81,
+          "actual_pct": 0.0836,
+          "theoretical_pct": 0.0758,
+          "variance_pct": -0.0078
         },
         "unallocated": {
           "category_sale_gbp": 0.0,
@@ -248,28 +248,28 @@
     {
       "code": "TT-JAMES-ST",
       "buyer_name": "TAKA TAKA JAMES STREET",
-      "total_sales_gbp": 12312.2,
-      "actual_usage_gbp": 4660.21,
-      "actual_pct": 0.3785,
-      "theoretical_usage_gbp": 4023.34,
-      "theoretical_pct": 0.3268,
-      "variance_gbp": -636.86,
-      "variance_pct": -0.0517,
+      "total_sales_gbp": 9204.02,
+      "actual_usage_gbp": 2440.12,
+      "actual_pct": 0.2651,
+      "theoretical_usage_gbp": 3075.16,
+      "theoretical_pct": 0.3341,
+      "variance_gbp": 635.04,
+      "variance_pct": 0.069,
       "waste_gbp": 0.0,
       "is_flagged": false,
       "flag_reason": null,
       "categories": {
         "food": {
-          "category_sale_gbp": 10103.52,
-          "actual_pct": 0.4427,
-          "theoretical_pct": 0.3757,
-          "variance_pct": -0.067
+          "category_sale_gbp": 7421.07,
+          "actual_pct": 0.3077,
+          "theoretical_pct": 0.375,
+          "variance_pct": 0.0673
         },
         "bev": {
-          "category_sale_gbp": 2208.68,
-          "actual_pct": 0.085,
-          "theoretical_pct": 0.1031,
-          "variance_pct": 0.0181
+          "category_sale_gbp": 1782.95,
+          "actual_pct": 0.0877,
+          "theoretical_pct": 0.1638,
+          "variance_pct": 0.076
         },
         "unallocated": {
           "category_sale_gbp": 0.0,
@@ -291,8 +291,8 @@
       "OPA-BATH",
       "TT-BROADQUAY",
       "TT-BRIDEWELL",
-      "TT-MAGIC-ROLL",
       "TT-BOURNEMOUTH",
+      "TT-MAGIC-ROLL",
       "TT-JAMES-ST"
     ],
     "sites_excluded": [
@@ -301,20 +301,20 @@
         "reason": "no_stock_count"
       }
     ],
-    "total_sales_gbp": 123766.28,
-    "actual_usage_gbp": 36011.74,
-    "actual_pct": 0.291,
-    "theoretical_usage_gbp": 34161.52,
-    "theoretical_pct": 0.276,
-    "variance_gbp": -1850.2,
-    "variance_pct": -0.0149
+    "total_sales_gbp": 107399.16,
+    "actual_usage_gbp": 31519.28,
+    "actual_pct": 0.2935,
+    "theoretical_usage_gbp": 29301.41,
+    "theoretical_pct": 0.2728,
+    "variance_gbp": -2217.87,
+    "variance_pct": -0.0207
   },
   "group_all": {
-    "total_sales_gbp": 141763.74,
-    "actual_usage_gbp": 36011.74,
-    "theoretical_usage_gbp": 37481.33,
-    "variance_gbp": 1469.61,
-    "waste_gbp": 4.29
+    "total_sales_gbp": 125213.26,
+    "actual_usage_gbp": 31519.28,
+    "theoretical_usage_gbp": 32563.74,
+    "variance_gbp": 1044.46,
+    "waste_gbp": 5.63
   },
   "validation": {
     "status": "passed",
