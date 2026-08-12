@@ -1,6 +1,6 @@
 {
   "trading_date": "2026-08-09",
-  "generated_at_utc": "2026-08-11T07:05:14.802680+00:00",
+  "generated_at_utc": "2026-08-12T07:09:16.483068+00:00",
   "scope": "v4-email-driven-7sites",
   "group_total": {
     "net_sales_gbp": 16396.77,
@@ -292,8 +292,8 @@
   "stale": {
     "is_stale": true,
     "reason": "Aloha S3 token rejected on all 3 attempts (HTTP 400 InvalidToken): ERROR: HTTP 400 from S3.",
-    "attempted_for_trading_date": "2026-08-10",
+    "attempted_for_trading_date": "2026-08-11",
     "last_good_trading_date": "2026-08-09",
-    "cron_run_at_utc": "2026-08-11T07:05:14.802680+00:00"
+    "cron_run_at_utc": "2026-08-12T07:09:16.483068+00:00"
   }
 }
